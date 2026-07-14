@@ -347,6 +347,20 @@ t.src=v;s=b.getElementsByTagName(e)[0];
 s.parentNode.insertBefore(t,s)}(window, document,'script',
 'https://connect.facebook.net/en_US/fbevents.js');
 fbq('init', '1375322071188175');
+
+// Honor "Do Not Sell or Share My Info": if the visitor has explicitly opted
+// out before, or their browser sends the Global Privacy Control (GPC) signal
+// and they haven't explicitly opted back in, revoke consent so the Pixel
+// does not send this session's events for ad targeting/sharing purposes.
+(function () {
+  var stored = localStorage.getItem('doNotSellOptOut');
+  var optedOut = stored === null ? (navigator.globalPrivacyControl === true) : stored === 'true';
+  if (optedOut) {
+    fbq('consent', 'revoke');
+    if (stored === null) localStorage.setItem('doNotSellOptOut', 'true');
+  }
+})();
+
 fbq('track', 'PageView');
 </script>
 <noscript><img height="1" width="1" style="display:none"
@@ -426,6 +440,10 @@ src="https://www.facebook.com/tr?id=1375322071188175&ev=PageView&noscript=1"
       <h2>Let's find your starting point.</h2>
       <p>This isn't a loan application, just a quick way to see what options we recommend for you.</p>
     </div>
+
+    <p style="text-align:center; max-width:560px; margin: 0 auto 28px; font-size:0.8rem; color: var(--ink-soft); line-height:1.6;">
+      By starting this assessment, you agree that the information you provide will be collected and used as described in our <a href="privacy-policy.html" style="color: var(--forest-dark); font-weight:600;">Privacy Policy</a>, including for advertising measurement via the Meta Pixel. See "Your Privacy Choices" in our Privacy Policy, or use the <a href="#" id="notice-dns-link" style="color: var(--forest-dark); font-weight:600;">Do Not Sell or Share My Info</a> link below to opt out.
+    </p>
 
     <div class="quiz-box">
       <!-- Age gate -->
@@ -588,7 +606,7 @@ src="https://www.facebook.com/tr?id=1375322071188175&ev=PageView&noscript=1"
     </p>
     <div class="foot-bottom">
       <span>© 2026 ClearPath Debt Guide. All rights reserved.</span>
-      <span><a href="privacy-policy.html" style="color: inherit;">Privacy Policy</a> · <a href="terms-of-service.html" style="color: inherit;">Terms of Use</a></span>
+      <span><a href="privacy-policy.html" style="color: inherit;">Privacy Policy</a> · <a href="terms-of-service.html" style="color: inherit;">Terms of Use</a> · <a href="#" id="dns-link" style="color: inherit;">Do Not Sell or Share My Info</a></span>
     </div>
   </div>
 </footer>
@@ -705,6 +723,39 @@ src="https://www.facebook.com/tr?id=1375322071188175&ev=PageView&noscript=1"
       fbq('track', 'Lead');
     }
   });
+
+  // "Do Not Sell or Share My Info" mechanism: toggles Meta Pixel consent
+  // and remembers the choice in this browser for future visits.
+  function isOptedOut() {
+    return localStorage.getItem('doNotSellOptOut') === 'true';
+  }
+
+  function refreshDnsLinks() {
+    var label = isOptedOut() ? 'Data Sharing: Opted Out ✓' : 'Do Not Sell or Share My Info';
+    var footerLink = document.getElementById('dns-link');
+    var noticeLink = document.getElementById('notice-dns-link');
+    if (footerLink) footerLink.textContent = label;
+    if (noticeLink) noticeLink.textContent = label;
+  }
+
+  function toggleDoNotSell(e) {
+    e.preventDefault();
+    var optingOut = !isOptedOut();
+    localStorage.setItem('doNotSellOptOut', optingOut ? 'true' : 'false');
+    if (typeof fbq === 'function') {
+      fbq('consent', optingOut ? 'revoke' : 'grant');
+    }
+    refreshDnsLinks();
+    alert(optingOut
+      ? "You've opted out of having your data sold or shared for advertising on this site. This is saved in your browser, on this device."
+      : "Data sharing for advertising has been re-enabled on this site.");
+  }
+
+  var dnsLink = document.getElementById('dns-link');
+  var noticeDnsLink = document.getElementById('notice-dns-link');
+  if (dnsLink) dnsLink.addEventListener('click', toggleDoNotSell);
+  if (noticeDnsLink) noticeDnsLink.addEventListener('click', toggleDoNotSell);
+  refreshDnsLinks();
 </script>
 
 </body>
