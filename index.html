@@ -23,11 +23,11 @@
     --grad: linear-gradient(135deg, #0EA980 0%, #0C8FA6 100%);
     --grad-warm: linear-gradient(135deg, #FF5A4E 0%, #FFB020 100%);
   }
- 
+
   * { box-sizing: border-box; margin: 0; padding: 0; }
- 
+
   html { scroll-behavior: smooth; }
- 
+
   body {
     background: var(--ivory);
     color: var(--ink);
@@ -35,15 +35,15 @@
     line-height: 1.6;
     -webkit-font-smoothing: antialiased;
   }
- 
+
   h1, h2, h3 { font-family: 'Bricolage Grotesque', sans-serif; font-weight: 600; color: var(--ink); }
- 
+
   .mono { font-family: 'IBM Plex Mono', monospace; letter-spacing: 0.03em; }
- 
+
   a { color: inherit; }
- 
+
   .wrap { max-width: 1080px; margin: 0 auto; padding: 0 32px; }
- 
+
   /* Header */
   header {
     padding: 28px 0;
@@ -63,7 +63,7 @@
   }
   .tel { font-size: 0.9rem; color: var(--ink-soft); }
   .tel strong { color: var(--forest-dark); }
- 
+
   /* Hero */
   .hero {
     padding: 88px 0 72px;
@@ -133,7 +133,7 @@
     color: var(--ink);
     font-weight: 600;
   }
- 
+
   /* Road / signature element */
   .road-card {
     background: var(--white);
@@ -177,7 +177,7 @@
   .road-step .mono-label { font-size: 0.7rem; color: var(--forest); font-weight: 600; text-transform: uppercase; letter-spacing: 0.08em; }
   .road-step h4 { font-family: 'Inter', sans-serif; font-weight: 600; font-size: 0.98rem; margin: 3px 0 4px; }
   .road-step p { font-size: 0.86rem; color: var(--ink-soft); }
- 
+
   /* CTA button */
   .btn {
     display: inline-flex;
@@ -204,14 +204,14 @@
     box-shadow: none;
   }
   .btn-ghost:hover { background: #FFF1EF; filter: none; box-shadow: none; }
- 
+
   /* Section shared */
   section { padding: 72px 0; }
   .section-head { max-width: 620px; margin-bottom: 48px; }
   .section-head .eyebrow { margin-bottom: 12px; }
   .section-head h2 { font-size: 2rem; margin-bottom: 14px; }
   .section-head p { color: var(--ink-soft); font-size: 1.02rem; }
- 
+
   /* Assessment / quiz */
   .quiz-section { background: var(--sage); border-top: 1px solid var(--line); border-bottom: 1px solid var(--line); }
   .quiz-box {
@@ -260,7 +260,7 @@
   }
   .result-box .amount { font-family: 'Bricolage Grotesque', sans-serif; font-size: 2.4rem; color: var(--forest-dark); margin: 8px 0 4px; font-weight: 700; }
   .fine-print { font-size: 0.76rem; color: var(--ink-soft); margin-top: 18px; line-height: 1.5; }
- 
+
   /* Options grid (paths) */
   .paths-grid {
     display: grid;
@@ -290,7 +290,7 @@
   .path-card li::before { content: '—'; position: absolute; left: 0; color: var(--forest); }
   .path-card.featured { border-color: var(--forest); border-top: 4px solid; border-image: var(--grad) 1; box-shadow: 0 12px 28px -12px rgba(14, 169, 128, 0.35); }
   .path-card.featured .mono-tag { color: var(--forest-dark); }
- 
+
   /* Testimonial strip */
   .trust-strip { background: var(--ink); color: var(--ivory); }
   .trust-strip .wrap { display: flex; flex-direction: column; gap: 28px; }
@@ -298,13 +298,13 @@
   .trust-strip .stats-row { display: flex; gap: 40px; align-items: center; justify-content: space-between; flex-wrap: wrap; }
   .trust-strip .stat strong { font-family: 'Bricolage Grotesque', sans-serif; font-size: 1.8rem; display: block; color: var(--gold); font-weight: 700; }
   .trust-strip .stat span { font-size: 0.8rem; opacity: 0.75; }
- 
+
   /* Final CTA */
   .final-cta { text-align: center; }
   .final-cta .wrap { max-width: 560px; }
   .final-cta h2 { font-size: 2.1rem; margin-bottom: 16px; }
   .final-cta p { color: var(--ink-soft); margin-bottom: 32px; }
- 
+
   /* Footer / disclosures */
   footer {
     background: var(--sage);
@@ -328,7 +328,7 @@
     padding-top: 20px;
     border-top: 1px solid var(--line);
   }
- 
+
   @media (max-width: 860px) {
     .hero .wrap { grid-template-columns: 1fr; }
     .hero h1 { font-size: 2.2rem; }
@@ -336,9 +336,26 @@
     .quiz-box { padding: 30px 22px; }
   }
 </style>
+<!-- Meta Pixel Code -->
+<script>
+!function(f,b,e,v,n,t,s)
+{if(f.fbq)return;n=f.fbq=function(){n.callMethod?
+n.callMethod.apply(n,arguments):n.queue.push(arguments)};
+if(!f._fbq)f._fbq=n;n.push=n;n.loaded=!0;n.version='2.0';
+n.queue=[];t=b.createElement(e);t.async=!0;
+t.src=v;s=b.getElementsByTagName(e)[0];
+s.parentNode.insertBefore(t,s)}(window, document,'script',
+'https://connect.facebook.net/en_US/fbevents.js');
+fbq('init', '1375322071188175');
+fbq('track', 'PageView');
+</script>
+<noscript><img height="1" width="1" style="display:none"
+src="https://www.facebook.com/tr?id=1375322071188175&ev=PageView&noscript=1"
+/></noscript>
+<!-- End Meta Pixel Code -->
 </head>
 <body id="page-top">
- 
+
 <header>
   <div class="wrap" style="justify-content: flex-start;">
     <div class="logo">
@@ -358,7 +375,7 @@
     </div>
   </div>
 </header>
- 
+
 <section class="hero">
   <div class="wrap">
     <div>
@@ -372,7 +389,7 @@
         <div class="trust-item"><strong>No impact</strong>to your credit score</div>
       </div>
     </div>
- 
+
     <div class="road-card">
       <h3>How the process works</h3>
       <p class="cap">What the next few steps will look like</p>
@@ -401,7 +418,7 @@
     </div>
   </div>
 </section>
- 
+
 <section class="quiz-section" id="assessment">
   <div class="wrap">
     <div class="section-head" style="margin: 0 auto 40px; text-align:center; max-width: 560px;">
@@ -409,7 +426,7 @@
       <h2>Let's find your starting point.</h2>
       <p>This isn't a loan application, just a quick way to see what options we recommend for you.</p>
     </div>
- 
+
     <div class="quiz-box">
       <!-- Age gate -->
       <div id="age-gate" class="quiz-step visible">
@@ -421,14 +438,14 @@
         </div>
         <button class="btn btn-full" id="age-continue-btn" disabled style="margin-top:16px;">Continue →</button>
       </div>
- 
+
       <div class="quiz-progress" id="quiz-progress" style="display:none;">
         <span class="active" data-step="1"></span>
         <span data-step="2"></span>
         <span data-step="3"></span>
         <span data-step="4"></span>
       </div>
- 
+
       <!-- Step 1 -->
       <div class="quiz-step" data-step="1">
         <h3>How much unsecured debt do you have?</h3>
@@ -439,7 +456,7 @@
           <div class="option" data-value="50k-plus">$50,000+</div>
         </div>
       </div>
- 
+
       <!-- Step 2 -->
       <div class="quiz-step" data-step="2">
         <h3>What type of debt is it, mostly?</h3>
@@ -450,7 +467,7 @@
           <div class="option" data-value="other">Other</div>
         </div>
       </div>
- 
+
       <!-- Step 3: monthly income -->
       <div class="quiz-step" data-step="3">
         <h3>What's your approximate monthly income?</h3>
@@ -461,7 +478,7 @@
           <div class="option" data-value="5000-plus">$5,000+</div>
         </div>
       </div>
- 
+
       <!-- Step 4 -->
       <div class="quiz-step" data-step="4">
         <h3>Where do things stand with your payments?</h3>
@@ -472,7 +489,7 @@
           <div class="option" data-value="6mo-plus">6+ months / in collections</div>
         </div>
       </div>
- 
+
       <!-- Result -->
       <div class="quiz-step" data-step="result">
         <div class="result-box">
@@ -483,7 +500,7 @@
           <p class="fine-print">You'll be connected with TurboDebt, LLC, a debt settlement company. ClearPath Debt Guide may receive compensation if you enroll in a program. This is not a guarantee of results; actual savings and program length vary by individual circumstances.</p>
         </div>
       </div>
- 
+
       <!-- Disqualified -->
       <div class="quiz-step" data-step="disqualified">
         <div class="result-box">
@@ -494,7 +511,7 @@
           <a href="#page-top" class="btn btn-ghost">Return to Home</a>
         </div>
       </div>
- 
+
       <div class="quiz-nav" id="quiz-nav" style="display:none;">
         <button class="quiz-back" id="back-btn" style="visibility:hidden;">← Back</button>
         <button class="btn" id="next-btn" disabled>Continue →</button>
@@ -502,7 +519,7 @@
     </div>
   </div>
 </section>
- 
+
 <section>
   <div class="wrap">
     <div class="section-head">
@@ -544,7 +561,7 @@
     </div>
   </div>
 </section>
- 
+
 <section class="trust-strip">
   <div class="wrap">
     <h3>Our Partners Offer</h3>
@@ -555,7 +572,7 @@
     </div>
   </div>
 </section>
- 
+
 <section class="final-cta">
   <div class="wrap">
     <h2>See your options in about two minutes.</h2>
@@ -563,7 +580,7 @@
     <a href="#assessment" class="btn">Take the Free Assessment →</a>
   </div>
 </section>
- 
+
 <footer>
   <div class="wrap">
     <p class="disclosure">
@@ -575,12 +592,12 @@
     </div>
   </div>
 </footer>
- 
+
 <script>
   const steps = ['1','2','3','4'];
   let current = 0;
   let answers = {};
- 
+
   const stepEls = {
     '1': document.querySelector('[data-step="1"].quiz-step'),
     '2': document.querySelector('[data-step="2"].quiz-step'),
@@ -597,9 +614,9 @@
   const nextBtn = document.getElementById('next-btn');
   const backBtn = document.getElementById('back-btn');
   const nav = document.getElementById('quiz-nav');
- 
+
   let ageAnswer = null;
- 
+
   ageOptions.addEventListener('click', (e) => {
     const opt = e.target.closest('.option');
     if (!opt) return;
@@ -608,7 +625,7 @@
     ageAnswer = opt.dataset.value;
     ageContinueBtn.disabled = false;
   });
- 
+
   ageContinueBtn.addEventListener('click', () => {
     ageGate.classList.remove('visible');
     if (ageAnswer === 'no') {
@@ -621,7 +638,7 @@
       showStep(0);
     }
   });
- 
+
   function showStep(idx) {
     Object.values(stepEls).forEach(el => el.classList.remove('visible'));
     stepEls[steps[idx]].classList.add('visible');
@@ -629,13 +646,13 @@
     backBtn.style.visibility = idx === 0 ? 'hidden' : 'visible';
     checkNextEnabled();
   }
- 
+
   function checkNextEnabled() {
     const stepKey = steps[current];
     nextBtn.disabled = !answers[stepKey];
     nextBtn.textContent = current === steps.length - 1 ? 'See My Results →' : 'Continue →';
   }
- 
+
   document.querySelectorAll('.quiz-step .options').forEach(group => {
     if (group.id === 'age-options') return;
     group.addEventListener('click', (e) => {
@@ -648,13 +665,13 @@
       checkNextEnabled();
     });
   });
- 
+
   function isDisqualified() {
     // Disqualifying thresholds: debt under $10k, income under $1,500, debt type "other"
     // (age is handled separately at the age gate)
     return answers['1'] === 'under-10k' || answers['3'] === 'under-1500' || answers['2'] === 'other';
   }
- 
+
   nextBtn.addEventListener('click', () => {
     if (current < steps.length - 1) {
       current++;
@@ -672,14 +689,23 @@
       }
     }
   });
- 
+
   backBtn.addEventListener('click', () => {
     if (current > 0) {
       current--;
       showStep(current);
     }
   });
+
+  // Fire the Meta Pixel "Lead" conversion only when the user actually
+  // clicks through to the TurboDebt referral link, not on the result
+  // screen itself, so Meta counts exactly one conversion per referral.
+  document.getElementById('cta-link').addEventListener('click', () => {
+    if (typeof fbq === 'function') {
+      fbq('track', 'Lead');
+    }
+  });
 </script>
- 
+
 </body>
 </html>
