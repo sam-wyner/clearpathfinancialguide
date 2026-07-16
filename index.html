@@ -572,9 +572,9 @@ src="https://www.facebook.com/tr?id=1375322071188175&ev=PageView&noscript=1"
         <div class="result-box">
           <span class="eyebrow" style="display:block;">Your assessment is ready</span>
           <h3 style="margin-bottom: 4px;">Here's what fits your numbers</h3>
-          <p style="color: var(--ink-soft); font-size:0.92rem; max-width:400px; margin: 10px auto 20px;">Based on your answers, a debt settlement program may be worth exploring. A specialist can walk you through real terms and numbers, no cost, no obligation, and no guarantee of any specific outcome.</p>
-          <a href="#" id="cta-link" class="btn btn-full" target="_blank" rel="noopener">See My Options With TurboDebt →</a>
-          <p class="fine-print">You'll be connected with TurboDebt, LLC, a debt settlement company. ClearPath Debt Guide may receive compensation if you enroll in a program. This is not a guarantee of results; actual savings and program length vary by individual circumstances.</p>
+          <p style="color: var(--ink-soft); font-size:0.92rem; max-width:400px; margin: 10px auto 20px;">Based on your answers, a debt consolidation program may be worth exploring. A specialist can walk you through real terms and numbers, no cost, no obligation, and no guarantee of any specific outcome.</p>
+          <a href="#" id="cta-link" class="btn btn-full" target="_blank" rel="noopener">See My Options →</a>
+          <p class="fine-print">You'll be connected with one of our referral partners, a debt consolidation company. ClearPath Debt Guide may receive compensation if you enroll in a program. This is not a guarantee of results; actual savings and program length vary by individual circumstances.</p>
         </div>
       </div>
  
@@ -596,6 +596,7 @@ src="https://www.facebook.com/tr?id=1375322071188175&ev=PageView&noscript=1"
     </div>
   </div>
 </section>
+ 
  
 <section>
   <div class="wrap">
@@ -661,7 +662,7 @@ src="https://www.facebook.com/tr?id=1375322071188175&ev=PageView&noscript=1"
 <footer>
   <div class="wrap">
     <p class="disclosure">
-      <strong>Advertising Disclosure:</strong> ClearPath Debt Guide is an independent marketing website and is not a debt relief, debt settlement, or credit counseling company. We are compensated by our partners, including TurboDebt, when visitors we refer enroll in a program. This compensation may influence which companies and offers appear on this site. Debt settlement programs may adversely affect your credit score, and creditors are not obligated to accept a reduced settlement. Settled debt may be considered taxable income. Program length, fees, and results vary based on individual circumstances and are not guaranteed. This site does not constitute financial or legal advice, consult a qualified professional before enrolling in any program.
+      <strong>Advertising Disclosure:</strong> ClearPath Debt Guide is an independent marketing website and is not a debt relief, debt settlement, or credit counseling company. We are compensated by our partners when visitors we refer enroll in a program. This compensation may influence which companies and offers appear on this site. Debt settlement programs may adversely affect your credit score, and creditors are not obligated to accept a reduced settlement. Settled debt may be considered taxable income. Program length, fees, and results vary based on individual circumstances and are not guaranteed. This site does not constitute financial or legal advice, consult a qualified professional before enrolling in any program.
     </p>
     <div class="foot-bottom">
       <span>© 2026 ClearPath Debt Guide. All rights reserved.</span>
@@ -749,6 +750,28 @@ src="https://www.facebook.com/tr?id=1375322071188175&ev=PageView&noscript=1"
     return answers['1'] === 'under-10k' || answers['3'] === 'under-1500' || answers['2'] === 'other';
   }
  
+  // Builds the outbound referral link, pulling subId/subId2/clickId from
+  // this page's own URL query string (i.e. whatever your traffic source
+  // appended to your ad/landing page link). firstName/lastName/email are
+  // left blank since the quiz no longer collects contact info directly.
+  function buildReferralLink() {
+    var params = new URLSearchParams(window.location.search);
+    var subId = params.get('subId') || params.get('sub_id') || '';
+    var subId2 = params.get('subId2') || params.get('sub_id2') || '';
+    var clickId = params.get('clickId') || params.get('clickid') || params.get('click_id') || '';
+    var firstName = params.get('firstName') || '';
+    var lastName = params.get('lastName') || '';
+    var email = params.get('email') || '';
+ 
+    return 'https://www.rnd3.com/ai/iframeRedirect.php?id=UeVz0uMWaB9AycVwl1Pu9z1C2jUo_ZHujQe13UA03kc.'
+      + '&subId=' + encodeURIComponent(subId)
+      + '&subId2=' + encodeURIComponent(subId2)
+      + '&subId3=' + encodeURIComponent(clickId)
+      + '&firstName=' + encodeURIComponent(firstName)
+      + '&lastName=' + encodeURIComponent(lastName)
+      + '&email=' + encodeURIComponent(email);
+  }
+ 
   nextBtn.addEventListener('click', () => {
     if (current < steps.length - 1) {
       current++;
@@ -760,9 +783,7 @@ src="https://www.facebook.com/tr?id=1375322071188175&ev=PageView&noscript=1"
         stepEls['disqualified'].classList.add('visible');
       } else {
         stepEls['result'].classList.add('visible');
-        // In production: POST answers to your CRM/tracking endpoint here,
-        // then redirect via your TurboDebt affiliate link.
-        document.getElementById('cta-link').href = 'https://turbodebt.everflowclient.io/affiliate/signup#REPLACE_WITH_YOUR_TRACKING_LINK';
+        document.getElementById('cta-link').href = buildReferralLink();
       }
     }
   });
@@ -775,8 +796,8 @@ src="https://www.facebook.com/tr?id=1375322071188175&ev=PageView&noscript=1"
   });
  
   // Fire the Meta Pixel "Lead" conversion only when the user actually
-  // clicks through to the TurboDebt referral link, not on the result
-  // screen itself, so Meta counts exactly one conversion per referral.
+  // clicks through to the referral link, not on the result screen itself,
+  // so Meta counts exactly one conversion per referral.
   document.getElementById('cta-link').addEventListener('click', () => {
     if (typeof fbq === 'function') {
       fbq('track', 'Lead');
